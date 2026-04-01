@@ -1,0 +1,57 @@
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background: #f5f8fa;
+  color: #222;
+}
+
+header {
+  background: linear-gradient(90deg, #24c6dc, #514a9d);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1, h2 {
+  margin: 0.5em 0;
+}
+
+button {
+  background: #24c6dc;
+  border: none;
+  padding: 0.7em 1.2em;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0.4em;
+  font-size: 1em;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #1fa2b9;
+}
+
+.hidden {
+  display: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #eee;
+  padding: 0.5em;
+}
+
+.tab.active {
+  background: #514a9d;
+}
+
+#tabContent {
+  padding: 1em;
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
