@@ -6,10 +6,7 @@ body {
 }
 
 header {
-  background: linear-gradient(90deg, #24c6dc, #514a9d);
-  color: white;
   text-align: center;
-  padding: 1rem;
 }
 
 h1, h2 {
@@ -55,3 +52,33 @@ nav {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+/* Kalenderlayout */
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 1em;
+}
+
+.day {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  padding: 6px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9em;
+  background: #fafafa;
+}
+
+.day:hover {
+  background-color: #e0f7fa;
+}
+
+.day.selected {
+  background-color: #24c6dc;
+  color: white;
+  border-color: #24c6dc;
+}
+
