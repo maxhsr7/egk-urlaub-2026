@@ -86,18 +86,39 @@ function saveBudget() {
   alert("Budget gespeichert!");
 }
 
+/* ---------- NEUE KALENDER-FUNKTION ---------- */
 function loadTermine() {
   const name = localStorage.getItem("egkUser");
-  let html = `<h3>Urlaubszeiträume angeben</h3>
-    <p>Markiere deine verfügbaren Wochen im Sommer 2026.</p>
-    <textarea id="termineText" rows="5" style="width:100%"></textarea>
-    <button onclick="saveTermine()">Speichern</button>`;
+  const saved = JSON.parse(localStorage.getItem(`egkTermine-${name}`) || "[]");
+
+  const start = new Date(2026, 5, 1); // 1. Juni 2026
+  const end = new Date(2026, 7, 31); // 31. Aug 2026
+
+  let html = `<h3>Verfügbarkeiten Sommer 2026</h3>
+              <p>Klicke auf die Tage, an denen du kannst:</p>
+              <div id="calendar"></div>
+              <button onclick="saveTermine()">Speichern</button>`;
   tabContent.innerHTML = html;
+
+  const cal = document.getElementById("calendar");
+  let current = new Date(start);
+  while (current <= end) {
+    const day = document.createElement("div");
+    day.textContent = current.getDate();
+    day.className = "day";
+    day.dataset.date = current.toISOString().split("T")[0];
+    if (saved.includes(day.dataset.date)) day.classList.add("selected");
+    day.addEventListener("click", () => day.classList.toggle("selected"));
+    cal.appendChild(day);
+    current.setDate(current.getDate() + 1);
+  }
 }
 
 function saveTermine() {
   const name = localStorage.getItem("egkUser");
-  const text = document.getElementById("termineText").value;
-  localStorage.setItem(`egkTermine-${name}`, text);
-  alert("Termine gespeichert!");
+  const selected = Array.from(document.querySelectorAll(".day.selected")).map(d => d.dataset.date);
+  localStorage.setItem(`egkTermine-${name}`, JSON.stringify(selected));
+  alert("Deine verfügbaren Tage wurden gespeichert!");
+}
+
 }
